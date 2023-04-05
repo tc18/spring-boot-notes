@@ -1,5 +1,6 @@
-FROM eclipse-temurin:17-jdk-alpine
-VOLUME /tmp
-ARG JAR_FILE
-COPY ${JAR_FILE} app.jar
-ENTRYPOINT ["java","-jar","/app.jar"]
+FROM maven:latest
+WORKDIR /spring-boot-notes
+COPY . .
+RUN mvn clean install
+
+CMD mvn spring-boot:run
